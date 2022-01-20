@@ -40,12 +40,13 @@ export default function Application(props) {
 <hr className="sidebar__separator sidebar--centered" />
 <nav className="sidebar__menu">
 
-<DayList
-            days={days}
-            day={"Monday"}
-            setDay={(day) => console.log(day)}
-            days={days} day={day} setDay={setDay} 
-/>
+<DayListItem
+  key={props.id} 
+  name={props.name} 
+  spots={props.spots} 
+  selected={props.name === props.value}
+  setDay={props.onChange}
+ />
 
 </nav>
 <img
