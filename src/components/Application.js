@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-import DayList from "./DayList";
+import DayListitem from "./DayListItem";
 
 import "components/Application.scss";
-
-
 
 const days = [
   {
@@ -24,36 +22,33 @@ const days = [
   },
 ];
 
-
-
 export default function Application(props) {
-  const [day, setDay] = useState("Monday")
+  const [day, setDay] = useState("Monday");
 
   return (
     <main className="layout">
       <section className="sidebar">
-      <img
-  className="sidebar--centered"
-  src="images/logo.png"
-  alt="Interview Scheduler"
-/>
-<hr className="sidebar__separator sidebar--centered" />
-<nav className="sidebar__menu">
-
-<DayListItem
-  key={props.id} 
-  name={props.name} 
-  spots={props.spots} 
-  selected={props.name === props.value}
-  setDay={props.onChange}
- />
-
-</nav>
-<img
-  className="sidebar__lhl sidebar--centered"
-  src="images/lhl.png"
-  alt="Lighthouse Labs"
-/>      </section>
+        <img
+          className="sidebar--centered"
+          src="images/logo.png"
+          alt="Interview Scheduler"
+        />
+        <hr className="sidebar__separator sidebar--centered" />
+        <nav className="sidebar__menu">
+          <DayListItem
+            key={props.id}
+            name={props.name}
+            spots={props.spots}
+            selected={props.name === props.value}
+            setDay={props.onChange}
+          />
+        </nav>
+        <img
+          className="sidebar__lhl sidebar--centered"
+          src="images/lhl.png"
+          alt="Lighthouse Labs"
+        />{" "}
+      </section>
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
       </section>
