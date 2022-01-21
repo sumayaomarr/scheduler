@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import axios from "axios";
 
 import DayList from "./DayList";
 
 import "components/Application.scss";
 
-import Appointment from "./Appointment"
+import Appointment from "./Appointment";
 
 const appointments = [
   {
@@ -16,12 +18,12 @@ const appointments = [
     time: "1pm",
     interview: {
       student: "Lydia Miller-Jones",
-      interviewer:{
+      interviewer: {
         id: 3,
         name: "Sylvia Palmer",
         avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
+      },
+    },
   },
   {
     id: 3,
@@ -32,38 +34,47 @@ const appointments = [
     time: "3pm",
     interview: {
       student: "Archie Andrews",
-      interviewer:{
+      interviewer: {
         id: 4,
         name: "Cohana Roy",
         avatar: "https://i.imgur.com/FK8V841.jpg",
-      }
-    }
+      },
+    },
   },
   {
     id: 5,
     time: "4pm",
-  }
-];
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
   },
 ];
+// const days = [
+//   {
+//     id: 1,
+//     name: "Monday",
+//     spots: 2,
+//   },
+//   {
+//     id: 2,
+//     name: "Tuesday",
+//     spots: 5,
+//   },
+//   {
+//     id: 3,
+//     name: "Wednesday",
+//     spots: 0,
+//   },
+// ];
 
 export default function Application() {
+  const [days, setDays] = useState([]);
   const [day, setDay] = useState("Monday");
+  useEffect(() => {
+    axios.get("/api/days")
+    .then(function (response) {
+      // handle success
+      console.log(response.data);
+      setDays(response.data);
+    })
+  }, []);
   return (
     <main className="layout">
       <section className="sidebar">
@@ -74,11 +85,7 @@ export default function Application() {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-          setDay={setDay}
-          day={day}
-          days={days}
-          />
+          <DayList setDay={setDay} day={day} days={days} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -87,17 +94,16 @@ export default function Application() {
         />{" "}
       </section>
       <section className="schedule">
-        {appointments.map(appointment => {
+        {appointments.map((appointment) => {
           return (
             <Appointment
-          key={appointment.id} id={appointment.id} time={appointment.time} interview={appointment.interview} />
-
-            
-          )
-        })
-        
-        
-        }
+              key={appointment.id}
+              id={appointment.id}
+              time={appointment.time}
+              interview={appointment.interview}
+            />
+          );
+        })}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
