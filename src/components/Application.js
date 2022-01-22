@@ -8,59 +8,39 @@ import "components/Application.scss";
 
 import Appointment from "./Appointment";
 
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 3,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      },
-    },
-  },
-  {
-    id: 3,
-    time: "2pm",
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Archie Andrews",
-      interviewer: {
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg",
-      },
-    },
-  },
-  {
-    id: 5,
-    time: "4pm",
-  },
-];
+import  { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 
 export default function Application() {
+
+
+
   const [state, setState] = useState({
   day: "Monday",
   days: [],
-  // you may put the line below, but will have to remove/comment hardcoded appointments variable
   appointments: {}
 });
-const dailyAppointments = [];
+
+// const dailyAppointments = [];
+
 const setDay = day => setState({ ...state, day });
 
-// const setDays = (days) => {setState({state, days});
-// setState(prev => ({ ...prev, days }));
 
+const appointments = getAppointmentsForDay(state, state.day);
+
+const schedule = appointments.map((appointment) => {
+
+  const interview = getInterview(state, appointment.interview);
+
+  return (
+    <Appointment
+      key={appointment.id}
+      id={appointment.id}
+      time={appointment.time}
+      interview={interview}
+    />
+  );
+});
 
   useEffect(() => {
     Promise.all([
@@ -96,16 +76,7 @@ const setDay = day => setState({ ...state, day });
         />{" "}
       </section>
       <section className="schedule">
-        {dailyAppointments.map((appointment) => {
-          return (
-            <Appointment
-              key={appointment.id}
-              id={appointment.id}
-              time={appointment.time}
-              interview={appointment.interview}
-            />
-          );
-        })}
+        {schedule} 
         <Appointment key="last" time="5pm" />
       </section>
     </main>
