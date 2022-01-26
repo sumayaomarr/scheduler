@@ -8,7 +8,6 @@ import 'components/Appointment/styles.scss';
 import Status from './Status';
 import Confirm from 'components/Appointment/Confirm';
 import Error from 'components/Appointment/Error';
-
 // Transition Views
 const EMPTY = 'EMPTY';
 const SHOW = 'SHOW';
@@ -29,17 +28,17 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id, interview)
+    // props.bookInterview(props.id, interview)
     
-    transition(SHOW);
-    // props
-    //   .bookInterview(props.id, interview)
-    //   .then(response => {
-    //     transition(SHOW);
-    //   })
-    //   .catch(error => transition(ERROR_SAVE, true));
+    // transition(SHOW);
+     props
+     .bookInterview(props.id, interview)
+    .then(response => {
+      transition(SHOW);
+      })
+     .catch(error => transition(ERROR_SAVE, true));
   }
-
+        
   // Delete an appointment
   function deleting() {
     transition(DELETING, true);
