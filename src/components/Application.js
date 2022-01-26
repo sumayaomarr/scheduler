@@ -27,11 +27,22 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
+    
+// const appointmentsPaylod = {
+//     "interview": {
+//       "student": String,
+//       "interviewer": Number
+    
+//   }
+// }
+    axios.put(`/api/appointments/${id}`, {interview})
+    
     setState({
       ...state,
       appointments
     })
   }
+
 
 
   // function save(name, interviewer) {
@@ -74,10 +85,11 @@ const interviewers = getInterviewersForDay(state, state.day)
         days: response[0].data,
         appointments: response[1].data,
         interviewers: response[2].data,
+        
       });
 
       console.log(response[0].data);
-    });
+    }).catch(function(err) {})
   }, []);
   return (
     <main className="layout">

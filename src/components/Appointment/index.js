@@ -24,13 +24,13 @@ export default function Appointment(props) {
   console.log("appointment props", props)
   // Save an appointment
   function save(name, interviewer) {
-    // console.log("name console", name, interviewer)
-    // transition(SAVING);
+    transition(SAVING);
     const interview = {
       student: name,
       interviewer
     };
     props.bookInterview(props.id, interview)
+    
     transition(SHOW);
     // props
     //   .bookInterview(props.id, interview)
