@@ -28,9 +28,8 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    // props.bookInterview(props.id, interview)
+   
     
-    // transition(SHOW);
      props
      .bookInterview(props.id, interview)
     .then(response => {
@@ -47,7 +46,11 @@ export default function Appointment(props) {
       .then(() => {
         transition(EMPTY);
       })
-      .catch(error => transition(ERROR_DELETE, true));
+      .catch(error => {
+        console.error(error);
+        transition(ERROR_DELETE, true);
+      });
+       
   }
 
   function edit() {
