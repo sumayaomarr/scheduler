@@ -2,8 +2,11 @@ import React from "react";
 import  "components/interviewerList.scss"
 import InterviewerListItem from "components/InterviewerListItem"
 
+
+
 export default function interviewerList(props) {
-  const interviewers = props.interviewers.map((interviewer) => {
+  console.log(props)
+  const interviewers = props.interviewers.map(interviewer => {
     return (
       <InterviewerListItem
         key={interviewer.id}
@@ -13,7 +16,7 @@ export default function interviewerList(props) {
         setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
     );
-  });
+  })
 
   return (
   <section className="interviewers">
@@ -21,3 +24,4 @@ export default function interviewerList(props) {
   <ul className="interviewers__list">{interviewers}</ul>
 </section>
 )}
+
