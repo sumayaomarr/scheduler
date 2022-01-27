@@ -3,7 +3,6 @@ import classnames from 'classnames/bind';
 import "components/DayListItem.scss"
 
 
-
 export default function DayListItem(props) {
 
   const dayClass = classnames("day-list__item", {

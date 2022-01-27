@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 export function getInterview(state, interview) {
   if (!interview) return null;
   const interviewObj = {
@@ -14,8 +7,6 @@ export function getInterview(state, interview) {
   interviewObj.interviewer = state.interviewers[interview.interviewer];
   return interviewObj;
 }
-
-
 
 
 export function getAppointmentsForDay(state, day) {
