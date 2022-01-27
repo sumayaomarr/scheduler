@@ -29,4 +29,4 @@ npm run storybook
 
 !["Schedule Overview"](https://github.com/sumayaomarr/scheduler/blob/master/docs/schedule.png?raw=true)
 
-!["Deleting confirmation"](
+![Deleting confirmation](https://github.com/sumayaomarr/scheduler/blob/master/docs/delete.png?raw=true)
