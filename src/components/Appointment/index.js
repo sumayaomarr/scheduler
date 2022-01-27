@@ -20,7 +20,7 @@ const ERROR_SAVE = 'ERROR_SAVE';
 const ERROR_DELETE = 'ERROR_DELETE';
 
 export default function Appointment(props) {
-  console.log("appointment props", props)
+
   // Save an appointment
   function save(name, interviewer) {
     transition(SAVING);

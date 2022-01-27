@@ -19,11 +19,9 @@ export function getInterview(state, interview) {
 
 
 export function getAppointmentsForDay(state, day) {
-  // console.log(state, day)
   const validDays = state.days.map(day => day.name);
   if (!day || !validDays.includes(day)) return []
 else
-// console.log(state, day)
 return state.days
   .filter (appointment => appointment.name === day)[0]
   .appointments.map(apptId => state.appointments[apptId]);
