@@ -100,16 +100,16 @@ export default function Appointment(props) {
       {mode === EDITING && (
         <Form
           name={props.interview.student}
-          interviewer={props.interview.interviewer}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={back}
+          onCancel={()=> back()} 
         />
       )}
       {mode === ERROR_SAVE && (
         <Error
           message="There was an error saving your appointment"
-          onClose={back}
+          onClose={() => back()} 
         />
       )}
       {mode === ERROR_DELETE && (

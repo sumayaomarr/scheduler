@@ -20,15 +20,25 @@ export default function useVisualMode(initial) {
 
   // allows to call back to return to previous mode
   const back = () => {
-     let newHistory = [...history];
-    newHistory.pop(mode);
-    setHistory((prev) => newHistory);
-    if (history.length > 1) {
-      setMode((prev) => newHistory[(newHistory.length - 1)]);
-    }
+    if (history.length > 1){
+        setMode(history[history.length - 2])
+        setHistory((prev)=>[...prev.slice(0, -1)])
+      }
+    //  let newHistory = [...history];
+    // newHistory.pop(mode);
+    // setHistory((prev) => newHistory);
+    // if (history.length > 1) {
+    //   setMode((prev) => newHistory[(newHistory.length - 1)]);
+    // }
   };
 
 
   return { mode, transition, back };
 };
 
+// [1, 2 ,3, 4]
+// length = 4 
+// current = 4 index 3
+// need = 3 index 2
+// history[3] history[history.length-1]
+// history[2]history[history.length-2]

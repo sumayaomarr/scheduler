@@ -69,11 +69,12 @@ export default function Application() {
       axios.get("/api/interviewers"),
     ])
       .then(function (response) {
-        setState({
+        setState((prev)=> ({
+          ...prev,
           days: response[0].data,
           appointments: response[1].data,
           interviewers: response[2].data,
-        });
+        }));
       })
       .catch(function (err) {});
   }, []);
