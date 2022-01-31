@@ -29,7 +29,6 @@ export default function Appointment(props) {
       interviewer
     };
    
-    
      props
      .bookInterview(props.id, interview)
     .then(response => {
@@ -64,7 +63,6 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
   return (
     <article data-testid="appointment" className="appointment">
       <Header time={props.time} />
@@ -86,7 +84,9 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form interviewers={props.interviewers} onSave={save} onCancel={back} />
+        <Form interviewers={props.interviewers} 
+        onSave={save}
+        onCancel={back} />
       )}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
@@ -115,7 +115,7 @@ export default function Appointment(props) {
       {mode === ERROR_DELETE && (
         <Error
           message="There was an error deleting your appointment"
-          onClose={back}
+          onClose={() => back()} 
         />
       )}
     </article>
